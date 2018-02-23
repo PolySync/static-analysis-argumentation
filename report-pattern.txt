@@ -1,0 +1,91 @@
+-----
+
+Proprietary Tool Suite
+
+(Nothing to report)
+
+-----
+
+$ scan-build clang pattern.c
+
+No bugs found.
+
+-----
+
+$ cppcheck pattern.c
+
+(Nothing to report)
+
+-----
+
+$ splint pattern.c
+
+Splint 3.1.2 --- 03 May 2009
+
+pattern.c:40:9: Function main declared to return SINT_32, should return int
+  The function main does not match the expected type. (Use -maintype to inhibit
+  warning)
+
+Finished checking --- 1 code warning
+
+-----
+
+$ flawfinder pattern.c
+
+FINAL RESULTS:
+
+
+ANALYSIS SUMMARY:
+
+No hits found.
+
+-----
+
+$ flint++ pattern.c
+
+===============================================================================
+File pattern.c:
+Errors:   0
+Warnings: 0
+Advice:   2
+===============================================================================
+
+Line 27: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+Line 58: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+===============================================================================
+Lint Summary: 1 files
+
+Errors:   0
+Warnings: 0
+Advice:   2
+===============================================================================
+
+-----
+
+$ frama-c pattern.c
+
+(Nothing to report)
+
+-----
+
+$ vera++ pattern.c
+
+(Nothing to report)
+
+-----
+
+$ oclint pattern.c
+
+OCLint Report
+
+Summary: TotalFiles=1 FilesWithViolations=0 P1=0 P2=0 P3=0

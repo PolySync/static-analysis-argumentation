@@ -1,0 +1,89 @@
+-----
+
+Proprietary Tool Suite
+
+(Nothing to report)
+
+-----
+
+$ scan-build clang alias.c
+
+No bugs found.
+
+-----
+
+$ cppcheck alias.c
+
+(Nothing to report)
+
+-----
+
+Splint 3.1.2 --- 03 May 2009
+
+alias.c:26:9: Function main declared to return SINT_32, should return int
+  The function main does not match the expected type. (Use -maintype to inhibit
+  warning)
+
+Finished checking --- 1 code warning
+
+-----
+
+$ flawfinder alias.c
+
+FINAL RESULTS:
+
+
+ANALYSIS SUMMARY:
+
+No hits found.
+
+-----
+
+$ flint++ alias.c
+
+===============================================================================
+File alias.c:
+Errors:   0
+Warnings: 0
+Advice:   2
+===============================================================================
+
+Line 19: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+Line 41: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+===============================================================================
+Lint Summary: 1 files
+
+Errors:   0
+Warnings: 0
+Advice:   2
+===============================================================================
+
+-----
+
+$ frama-c alias.c
+
+(Nothing to report)
+
+-----
+
+$ vera++ alias.c
+
+(Nothing to report)
+
+-----
+
+$ oclint alias.c
+
+OCLint Report
+
+Summary: TotalFiles=1 FilesWithViolations=0 P1=0 P2=0 P3=0

@@ -1,0 +1,116 @@
+-----
+
+Proprietary Tool Suite
+
+Static procedure is not explicity called in code analysed: black_box
+Casting operation on a pointer: (void* to struct example_s*)
+Casting operation to a pointer: (void* to struct example_s*)
+
+-----
+
+$ scan-build clang thread.c -lpthread
+
+scan-build: No bugs found.
+
+-----
+
+$ cppcheck thread.c
+
+(Nothing to report)
+
+-----
+
+$ splint -warnposix -preproc thread.c
+
+Splint 3.1.2 --- 03 May 2009
+
+/usr/include/sched.h:51:7: Parse Error: Non-function declaration:
+               __BEGIN_DECLS : int. (For help on parse errors, see splint -help
+               parseerrors.)
+*** Cannot continue.
+
+-----
+
+$ flawfinder thread.c
+
+FINAL RESULTS:
+
+
+ANALYSIS SUMMARY:
+
+No hits found.
+
+-----
+
+$ flint++ thread.c
+
+===============================================================================
+File thread.c:
+Errors:   0
+Warnings: 0
+Advice:   3
+===============================================================================
+
+Line 41: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+Line 82: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+Line 92: Advice
+
+Prefer `nullptr' to `NULL' in new C++ code.
+
+Unlike `NULL', `nullptr' can't accidentally be used in arithmetic or as an integer. See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431.pdf for details.
+
+===============================================================================
+Lint Summary: 1 files
+
+Errors:   0
+Warnings: 0
+Advice:   3
+===============================================================================
+
+-----
+
+$ CPATH=$CPATH:/usr/include/x86_64-linux-gnu/:/usr/include/ frama-c thread.c
+
+In file included from /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:21:0,
+                 from /usr/include/pthread.h:26,
+                 from thread.c:8:
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:4:0: warning: "__WORDSIZE" redefined
+ # define __WORDSIZE 64
+
+In file included from /home/snewton/src/tis-interpreter/bin/../share/libc/__fc_define_wchar_t.h:25:0,
+                 from /home/snewton/src/tis-interpreter/bin/../share/libc/__fc_string_axiomatic.h:30,
+                 from /home/snewton/src/tis-interpreter/bin/../share/libc/string.h:26,
+                 from thread.c:7:
+/home/snewton/src/tis-interpreter/bin/../share/libc/__fc_machdep.h:33:0: note: this is the location of the previous definition
+ #define __WORDSIZE 32
+
+/home/snewton/src/tis-interpreter/bin/../share/libc/time.h:137:0: warning: "__WORDSIZE" redefined
+
+
+/tmp/ppannot66e122.c:455:0: note: this is the location of the previous definition
+ #define __WORDSIZE 32
+
+-----
+
+$ vera++ thread.c
+
+(Nothing to report)
+
+-----
+
+$ oclint thread.c
+
+OCLint Report
+
+Summary: TotalFiles=1 FilesWithViolations=0 P1=0 P2=0 P3=0
+
