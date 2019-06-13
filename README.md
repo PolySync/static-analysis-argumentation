@@ -95,3 +95,5 @@ Each of the examples should fail to compile with `rustc`
 ## Results
 
 See [./report-alias.txt](./report-alias.txt), [./report-const.txt](./report-const.txt), [./report-pattern.txt](./report-pattern.txt), [./report-thread.txt](./report-thread.txt) for result details for each example.
+
+See [./report-alias_no_ptr_arithmetic.txt](./report-alias_no_ptr_arithmetic.txt) for results on alias example without pointer arithmetic.
