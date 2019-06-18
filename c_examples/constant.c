@@ -28,7 +28,7 @@ SINT_32 main(void)
     /* Example data. */
     example_s data = {.tux = 1, .baz = 2, .bar = 3};
     /* Constant alias to example data. */
-    const example_s const * alias = &data;
+    const example_s * const alias = &data;
     /* Constant alias to alias. */
     const example_s * const * alias_to_alias = &alias;
     /* All values must be used. */
